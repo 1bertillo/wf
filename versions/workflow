@@ -3,7 +3,7 @@
 function exefastqc(){
 	#Executing fastqc
 	echo "INITIATING FASTQC:"
-	fastqc -o . $1
+	../fastqc/fastqc/fastqc -o . $1
 	#Decompressing file, copying and removing results
 	echo "PROCESSING STATISTICS:"
 	#We send the output to dev/null because we don't want it to show in the shell
@@ -22,7 +22,7 @@ function exefastqc(){
 function executadapt(){
 	#Executing cutadapt
 	echo "INITIATING CUTADAPT:"
-	cutadapt -a $2 $1 > $1.output.fq
+	../cutadapt/cutadapt-install/build/scripts-2.6/cutadapt -a $2 $1 > $1.output.fq
 	echo "------------------------------------------------------------------------"
 }
 
@@ -39,11 +39,11 @@ repofastqc="https://raw.githubusercontent.com/1bertillo/fastqc/master/metadata/m
 #Creating an application with python-2.7
 #rhc app-create $appname python-2.7
 #Launching FastQC cartridge
-rhc cartridge-add $repofastqc -a $app-name
+rhc cartridge-add $repofastqc -a $appname
 exefastqc $1
 
 #Launching CUTADAPT cartridge
-rhc cartridge-add $repocutadapt -a $app-name
+rhc cartridge-add $repocutadapt -a $appname
 executadapt $1 $chain
 
 #Executing FastQC with input as the output of the cutadapt execution
