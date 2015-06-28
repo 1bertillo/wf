@@ -37,7 +37,7 @@ repocutadapt="https://raw.githubusercontent.com/1bertillo/cutadapt/master/metada
 repofastqc="https://raw.githubusercontent.com/1bertillo/fastqc/master/metadata/manifest.yml"
 
 #Creating an application with python-2.7
-rhc app-create $appname python-2.7
+#rhc app-create $appname python-2.7
 #Launching FastQC cartridge
 rhc cartridge-add $repofastqc -a $app-name
 exefastqc $1
@@ -50,4 +50,4 @@ executadapt $1 $chain
 exefastqc $1.output.fq
 
 #Removing the application after the execution
-rhc app-delete $app-name
+rhc app-delete $appname
