@@ -39,6 +39,7 @@ repofastqc="https://raw.githubusercontent.com/1bertillo/fastqc/master/metadata/m
 #Creating an application with python-2.7
 #rhc app-create $appname python-2.7
 #Launching FastQC cartridge
+rhc setup
 rhc cartridge-add $repofastqc -a $appname
 exefastqc $1
 
